@@ -14,9 +14,8 @@ public class IntListExercises {
 //            head.first += c;
 //            head = head.rest;
 //        }
-        if(head != null) {
-            head.first +=c ;
-        }
+        if(head == null) return;
+        head.first +=c ;
         if (head.rest != null) {
             addConstant(head.rest, c);
         }
