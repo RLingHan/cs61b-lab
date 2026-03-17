@@ -11,16 +11,17 @@ public class ArrayDeque<T> implements  Deque<T>{
     private int front;
     private int rear;
 
-    ArrayDeque(T[] array, int size) {
+    public ArrayDeque(T[] array, int size) {
         this.array = array;
         this.size = size;
     }
-    ArrayDeque() {
+    public ArrayDeque() {
         array = (T[]) new Object[8];
         size = 0;
         front = 0;
         rear = 0;
     }
+
     private void resize(int newSize) {
 //        T[] temp = array;
 //        array = (T[]) new Object[newSize];
@@ -129,18 +130,4 @@ public class ArrayDeque<T> implements  Deque<T>{
         return false;
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<String> a = new ArrayDeque<String>();
-        System.out.println(a.isEmpty());
-        a.addFirst("a");
-        a.addFirst("b");
-        a.addFirst("c");
-        a.printDeque();
-        System.out.println(a.get(0));
-        System.out.println(a.removeFirst());
-        a.printDeque();
-        System.out.println(a.get(a.size-1));
-        System.out.println(a.removeLast());
-        a.printDeque();
-    }
 }

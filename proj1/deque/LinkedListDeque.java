@@ -112,19 +112,4 @@ public class LinkedListDeque<T> implements  Deque<T>{
         return false;
     }
 
-    public static void main(String[] args) {
-        LinkedListDeque<String> a = new LinkedListDeque<String>();
-        System.out.println(a.isEmpty());
-        a.addFirst("a");
-        a.addFirst("b");
-        a.addFirst("c");
-        a.printDeque();
-        System.out.println(a.get(0));
-        System.out.println(a.removeFirst());
-        a.printDeque();
-        System.out.println(a.get(a.size-1));
-        System.out.println(a.removeLast());
-        a.printDeque();
-
-    }
 }
