@@ -17,7 +17,7 @@ public class LinkedListDeque<T> implements  Deque<T>{
     private int size;
     private TNode sentinel;
 
-    private class ListDequeIterator<T> implements Iterator<T>{
+    private class ListDequeIterator implements Iterator<T>{
         private int index;
         public ListDequeIterator(){
             index = 0;
@@ -31,7 +31,7 @@ public class LinkedListDeque<T> implements  Deque<T>{
     }
     @Override
     public Iterator<T> iterator(){
-        return new ListDequeIterator<>();
+        return new ListDequeIterator();
     }
 
     public LinkedListDeque(){
@@ -121,8 +121,8 @@ public class LinkedListDeque<T> implements  Deque<T>{
         if (this.getClass() != o.getClass()) { return false; }
         LinkedListDeque<T> other = (LinkedListDeque<T>) o;
         if (this.size() != other.size()) { return false; }
-        for (T item : this) {
-            if (!other.equals(item)) {
+        for (int i = 0; i < size; i++) {
+            if (!this.get(i).equals(other.get(i))) {
                 return false;
             }
         }

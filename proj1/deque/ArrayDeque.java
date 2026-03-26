@@ -11,7 +11,7 @@ public class ArrayDeque<T> implements  Deque<T>{
     private int front;
     private int rear;
 
-    private class ArrayDequeIterator<T> implements Iterator<T>{
+    private class ArrayDequeIterator implements Iterator<T>{
         private int index;
         public ArrayDequeIterator(){
             index = 0;
@@ -25,7 +25,7 @@ public class ArrayDeque<T> implements  Deque<T>{
     }
     @Override
     public Iterator<T> iterator(){
-        return new ArrayDequeIterator<T>();
+        return new ArrayDequeIterator();
     }
 
 
@@ -141,8 +141,8 @@ public class ArrayDeque<T> implements  Deque<T>{
         if (this.getClass() != o.getClass()) { return false; }
         ArrayDeque<T> other = (ArrayDeque<T>) o;
         if (this.size() != other.size()) { return false; }
-        for (T item : this) {
-            if (!other.equals(item)) {
+        for (int i = 0; i < size; i++) {
+            if (!this.get(i).equals(other.get(i))) {
                 return false;
             }
         }
