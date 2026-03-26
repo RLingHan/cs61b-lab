@@ -20,7 +20,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T> {
 
     private class ListDequeIterator implements Iterator<T> {
         private int index;
-        public ListDequeIterator() {
+        ListDequeIterator() {
             index = 0;
         }
         public boolean hasNext() {

@@ -1,7 +1,6 @@
 package deque;
 
 import java.util.Iterator;
-import static java.lang.System.arraycopy;
 
 public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
@@ -12,7 +11,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     private class ArrayDequeIterator implements Iterator<T> {
         private int index;
-        public ArrayDequeIterator() {
+        ArrayDequeIterator() {
             index = 0;
         }
         public boolean hasNext() {
@@ -37,11 +36,8 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
     private void resize(int newSize) {
         T[] temp = (T[]) new Object[newSize];
-        if (front > rear) {
-            arraycopy(array, front, temp, 0, array.length - front);
-            arraycopy(array, 0, temp, array.length - front, rear);
-        } else {
-            arraycopy(array, front, temp, 0, size);
+        for (int i = 0; i < size; i++) {
+            temp[i] = array[(front + i) % array.length];
         }
         front = 0;
         rear = size;
