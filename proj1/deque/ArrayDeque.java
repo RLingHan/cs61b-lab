@@ -11,6 +11,24 @@ public class ArrayDeque<T> implements  Deque<T>{
     private int front;
     private int rear;
 
+    private class ArrayDequeIterator<T> implements Iterator<T>{
+        private int index;
+        public ArrayDequeIterator(){
+            index = 0;
+        }
+        public boolean hasNext(){
+            return index < size;
+        }
+        public T next(){
+            return (T)get(index++);
+        }
+    }
+    @Override
+    public Iterator<T> iterator(){
+        return new ArrayDequeIterator<T>();
+    }
+
+
     public ArrayDeque(T[] array, int size) {
         this.array = array;
         this.size = size;
@@ -61,11 +79,6 @@ public class ArrayDeque<T> implements  Deque<T>{
     }
 
     @Override
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    @Override
     public int size() {
         return size;
     }
@@ -111,6 +124,7 @@ public class ArrayDeque<T> implements  Deque<T>{
         T item = array[rear];
         array[rear] = null;
         size--;
+        if(size < array.length/4 && size >=4) resize(array.length/4);
         return item;
     }
 
@@ -121,13 +135,18 @@ public class ArrayDeque<T> implements  Deque<T>{
     }
 
     @Override
-    public Iterator<T> iterator() {
-        return null;
-    }
-
-    @Override
     public boolean equals(Object o) {
-        return false;
+        if (o == null) { return false; }
+        if (this == o) { return true; } // optimization
+        if (this.getClass() != o.getClass()) { return false; }
+        ArrayDeque<T> other = (ArrayDeque<T>) o;
+        if (this.size() != other.size()) { return false; }
+        for (T item : this) {
+            if (!other.equals(item)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
