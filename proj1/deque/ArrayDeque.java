@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import static java.lang.System.arraycopy;
 
-public class ArrayDeque<T> implements  Deque<T>{
+public class ArrayDeque<T> implements  Deque<T>, Iterable<T>{
 
     private T[] array;
     private int size;

@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class LinkedListDeque<T> implements  Deque<T>{
+public class LinkedListDeque<T> implements  Deque<T>, Iterable<T>{
 
     private class TNode {
         T item;
@@ -29,6 +29,7 @@ public class LinkedListDeque<T> implements  Deque<T>{
             return (T)get(index++);
         }
     }
+
     @Override
     public Iterator<T> iterator(){
         return new ListDequeIterator();
