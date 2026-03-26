@@ -28,11 +28,6 @@ public class ArrayDeque<T> implements  Deque<T>, Iterable<T>{
         return new ArrayDequeIterator();
     }
 
-
-    public ArrayDeque(T[] array, int size) {
-        this.array = array;
-        this.size = size;
-    }
     public ArrayDeque() {
         array = (T[]) new Object[8];
         size = 0;
@@ -47,7 +42,7 @@ public class ArrayDeque<T> implements  Deque<T>, Iterable<T>{
         T[] temp = (T[]) new Object[newSize];
         if(front > rear) {
             arraycopy(array, front, temp, 0, array.length-front);
-            arraycopy(array, 0, temp, array.length-front, array.length-rear);
+            arraycopy(array, 0, temp, array.length - front, rear);
         }else {
             arraycopy(array, front, temp, 0, size);
         }
@@ -136,11 +131,11 @@ public class ArrayDeque<T> implements  Deque<T>, Iterable<T>{
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) { return false; }
-        if (this == o) { return true; } // optimization
-        if (this.getClass() != o.getClass()) { return false; }
-        ArrayDeque<T> other = (ArrayDeque<T>) o;
-        if (this.size() != other.size()) { return false; }
+        if (o == null) return false;
+        if (this == o) return true;
+        if (!(o instanceof Deque)) return false;  // 注意：用 instanceof 而不是 getClass()
+        Deque<T> other = (Deque<T>) o;
+        if (this.size() != other.size()) return false;
         for (int i = 0; i < size; i++) {
             if (!this.get(i).equals(other.get(i))) {
                 return false;
